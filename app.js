@@ -130,11 +130,13 @@ function isLoggedIn(req, res, next) {
     return res.status(401).redirect("/user/login");
   }
 }
-// Only listen when running locally (not on Vercel)
+const PORT = process.env.PORT || 3000;
+console.log("✅ PORT:", PORT);
+
 if (require.main === module) {
-  app.listen(3000, () => {
-    console.log("Server is running on http://localhost:3000");
+  app.listen(PORT, () => {
+    console.log(`🚀 Server is running on http://localhost:${PORT}`);
   });
 }
 
-module.exports = app; // <-- important for Vercel to import
+module.exports = app; 
